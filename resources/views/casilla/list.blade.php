@@ -1,4 +1,3 @@
-<!-- list.blade.php -->
 @extends('plantilla')
 @section('content')
 <style>
