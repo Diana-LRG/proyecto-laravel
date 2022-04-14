@@ -16,7 +16,7 @@ class CasillaController extends Controller
     {
         $casillas = Casilla::all();
         return view('casilla/list', compact('casillas'));
-        //echo "Put here logical for method index";
+        echo "Put here logical for method index";
         //
     }
 
