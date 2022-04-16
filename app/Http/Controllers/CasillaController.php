@@ -42,13 +42,13 @@ class CasillaController extends Controller
         //print_r($request->all());
 
         $request->validate([
-
+            'ubicacion' => 'required|max:100',
         ]);
 
         $data['ubicacion']=$request->ubicacion;
         $casilla = Casilla::create($data);
-        return redirect('casilla')->wiht('success',
-        $casilla->ubicacion . ' guardado satisfactoriamente... ');
+        return redirect('casilla')
+        ->wiht('success',$casilla->ubicacion . ' guardado correctamente... ');
         //
     }
 
