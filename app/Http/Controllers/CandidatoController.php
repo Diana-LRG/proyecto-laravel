@@ -15,8 +15,7 @@ class CandidatoController extends Controller
     public function index()
     {
         $candidatos = Candidato::all();
-        return view('candidato/list', compact('candidatos'));
-        //
+        return view ('candidato/list',compact('candidatos'));
     }
 
     /**
@@ -27,15 +26,8 @@ class CandidatoController extends Controller
     public function create()
     {
         return view('candidato/create');
-        //
     }
-    
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     function validateData(Request $request)
     {
         $request->validate([
@@ -72,9 +64,14 @@ class CandidatoController extends Controller
         ];
         if ($request->hasFile('foto')) $foto->move(public_path('image'), $fotocandidato);
         if ($request->hasFile('perfil')) $perfil->move(public_path('pdf'), $perfilcandidato);
+        //print_r($campos);
         $candidato = Candidato::create($campos);
-        echo $candidato->nombrecompleto . " se guardo correctamente ... ";
+        //echo $candidato->nombrecompleto . " se guardo correctamente ... ";
+        return redirect("candidato");
     }
+
+
+
     /**
      * Display the specified resource.
      *
@@ -95,8 +92,7 @@ class CandidatoController extends Controller
     public function edit($id)
     {
         $candidato = Candidato::find($id);
-        return view('candidato/edit', compact('candidato'));
-        //
+        return view ('candidato/edit', compact('candidato')); 
     }
 
     /**
@@ -108,7 +104,6 @@ class CandidatoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
         $this->validateData($request);
 
         $fotoCandidato = "";
@@ -123,6 +118,7 @@ class CandidatoController extends Controller
         }
 
         $currentValue = Candidato::find($id);
+        
         if (empty($fotoCandidato)) $fotoCandidato = $currentValue->foto;
         if (empty($perfilCandidato)) $perfilCandidato = $currentValue->perfil;
 
@@ -137,7 +133,6 @@ class CandidatoController extends Controller
 
         Candidato::whereId($id)->update($campos);
         return redirect('candidato')->with('success', 'Actualizado correctamente...');
-    
     }
 
     /**
@@ -148,8 +143,7 @@ class CandidatoController extends Controller
      */
     public function destroy($id)
     {
-        Candidato::whereId($id)-> delete();
+        Candidato::whereId($id)->delete();
         return redirect('candidato');
-        //
     }
 }

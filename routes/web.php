@@ -5,6 +5,7 @@ use App\Http\Controllers\CasillaController;
 use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\EleccionController;
 use App\Http\Controllers\VotoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
